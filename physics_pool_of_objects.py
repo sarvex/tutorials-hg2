@@ -76,23 +76,39 @@ while hg.IsWindowOpen(win):
 	state = hg.ReadKeyboard()
 
 	if state.Key(hg.K_S):
-		for i in range(1, 8):
+		for _ in range(1, 8):
 			hg.SetMaterialValue(mat_objects, 'uDiffuseColor', hg.RandomVec4(0, 1))
 
-			if hg.FRand() > 0.5:
-				node = hg.CreatePhysicCube(scene, hg.Vec3.One, hg.TranslationMat4(hg.RandomVec3(hg.Vec3(-10, 18, -10), hg.Vec3(10, 18, 10))), cube_ref, [mat_objects], 1)
-			else:
-				node = hg.CreatePhysicSphere(scene, 0.5, hg.TranslationMat4(hg.RandomVec3(hg.Vec3(-10, 18, -10), hg.Vec3(10, 18, 10))), sphere_ref, [mat_objects], 1)
-
+			node = (
+				hg.CreatePhysicCube(
+					scene,
+					hg.Vec3.One,
+					hg.TranslationMat4(
+						hg.RandomVec3(hg.Vec3(-10, 18, -10), hg.Vec3(10, 18, 10))
+					),
+					cube_ref,
+					[mat_objects],
+					1,
+				)
+				if hg.FRand() > 0.5
+				else hg.CreatePhysicSphere(
+					scene,
+					0.5,
+					hg.TranslationMat4(
+						hg.RandomVec3(hg.Vec3(-10, 18, -10), hg.Vec3(10, 18, 10))
+					),
+					sphere_ref,
+					[mat_objects],
+					1,
+				)
+			)
 			physics.NodeCreatePhysicsFromAssets(node)  # update physics state
 
 			physic_nodes.append(node)
 	elif state.Key(hg.K_D):
 		if len(physic_nodes):
-			for i in range(1, 8):
-				node = physic_nodes[0]
-
-				if node:
+			for _ in range(1, 8):
+				if node := physic_nodes[0]:
 					scene.DestroyNode(node)
 					physic_nodes.pop(0)
 

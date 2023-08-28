@@ -68,10 +68,10 @@ class BipedActor:
 
 
 # spawn initial actors
-actors = []
-for i in range(20):
-	actors.append(BipedActor(hg.RandomVec3(hg.Vec3(-10, 0, -10), hg.Vec3(10, 0, 10))))
-
+actors = [
+	BipedActor(hg.RandomVec3(hg.Vec3(-10, 0, -10), hg.Vec3(10, 0, 10)))
+	for _ in range(20)
+]
 print('%d nodes in scene' % (scene.GetAllNodeCount()))
 
 # main loop
@@ -85,7 +85,7 @@ while not keyboard.Down(hg.K_Escape) and hg.IsWindowOpen(win):
 	if keyboard.Pressed(hg.K_S):
 		actors.append(BipedActor(hg.RandomVec3(hg.Vec3(-10, 0, -10), hg.Vec3(10, 0, 10))))
 	if keyboard.Pressed(hg.K_D):
-		if len(actors) > 0:
+		if actors:
 			actors.pop().destroy()
 			scene.GarbageCollect()
 

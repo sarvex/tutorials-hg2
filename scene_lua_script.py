@@ -17,12 +17,12 @@ function CallToReturnValue() return 'String returned from scene VM to host VM' e
 """)
 
 a = lua_vm.GetScriptValue(script, 'a')
-print('GetScriptValue returned a=' + str(lua_vm.Unpack(a)))
+print(f'GetScriptValue returned a={str(lua_vm.Unpack(a))}')
 
 lua_vm.SetScriptValue(script, 'a', lua_vm.Pack(24))
 
 a = lua_vm.GetScriptValue(script, 'a')
-print('GetScriptValue returned a=' + str(lua_vm.Unpack(a)))
+print(f'GetScriptValue returned a={str(lua_vm.Unpack(a))}')
 
 assert lua_vm.Call(script, 'CallToPrintA', [])[0] == True
 assert lua_vm.Call(script, 'CallToPrintV', [lua_vm.Pack(8)])[0] == True
@@ -33,4 +33,4 @@ assert lua_vm.Call(script, 'InvalidCall', [])[0] == False
 success, rvalues = lua_vm.Call(script, 'CallToReturnValue', [])
 assert success == True
 
-print('CallToReturnValue return value=' + str(lua_vm.Unpack(rvalues[0])))
+print(f'CallToReturnValue return value={str(lua_vm.Unpack(rvalues[0]))}')

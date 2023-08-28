@@ -96,9 +96,8 @@ while not keyboard.Pressed(hg.K_Escape) and hg.IsWindowOpen(win):
 			if hg.ImGuiButton('Press to destroy the cube node physics'):
 				physics.NodeDestroyPhysics(cube_node)
 				physics.GarbageCollect(scene)
-		else:
-			if hg.ImGuiButton('Create to create the cube node physics'):
-				physics.NodeCreatePhysicsFromAssets(cube_node)
+		elif hg.ImGuiButton('Create to create the cube node physics'):
+			physics.NodeCreatePhysicsFromAssets(cube_node)
 
 	hg.ImGuiEnd()
 

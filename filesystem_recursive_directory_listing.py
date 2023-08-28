@@ -8,4 +8,4 @@ def entry_type_to_string(type):
 entries = hg.ListDirRecursive('resources', hg.DE_All)
 
 for entry in entries:
-	print('- %s is a %s' % (entry.name, entry_type_to_string(entry.type)))
+	print(f'- {entry.name} is a {entry_type_to_string(entry.type)}')

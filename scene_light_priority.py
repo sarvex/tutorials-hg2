@@ -47,7 +47,7 @@ hg.CreateObject(scene, hg.TranslationMat4(hg.Vec3(0, 0, 0)), ground_ref, [mat_gr
 light_obj = scene.CreateObject(light_ref, [mat_light])  # sphere model to visualize lights
 
 light_nodes = []
-for i in range(16):
+for _ in range(16):
 	node = hg.CreatePointLight(scene, hg.Mat4.Identity, 1.5, hg.Color(1, 0.85, 0.25, 1), hg.Color(1, 0.9, 0.5, 1))
 	node.SetObject(light_obj)
 	light_nodes.append(node)

@@ -45,16 +45,27 @@ def create_material(ubc, orm):
 
 # Create scene
 scene = hg.Scene()
-scene.canvas.color = hg.Color(255 / 255, 255 / 255, 217 / 255, 1)
+scene.canvas.color = hg.Color(1, 1, 217 / 255, 1)
 scene.environment.ambient = hg.Color(15 / 255, 12 / 255, 9 / 255, 1)
 
 lgt = hg.CreateSpotLight(scene, hg.TransformationMat4(hg.Vec3(-8, 4, -5), hg.Vec3(hg.Deg(19), hg.Deg(59), 0)), 0, hg.Deg(5), hg.Deg(30), hg.Color.White, hg.Color.White, 10, hg.LST_Map, 0.0001)
-back_lgt = hg.CreatePointLight(scene, hg.TranslationMat4(hg.Vec3(2.4, 1, 0.5)), 10, hg.Color(94 / 255, 255 / 255, 228 / 255, 1), hg.Color(94 / 255, 1, 228 / 255, 1), 0)
+back_lgt = hg.CreatePointLight(
+	scene,
+	hg.TranslationMat4(hg.Vec3(2.4, 1, 0.5)),
+	10,
+	hg.Color(94 / 255, 1, 228 / 255, 1),
+	hg.Color(94 / 255, 1, 228 / 255, 1),
+	0,
+)
 
-mat_cube = create_material(hg.Vec4(255 / 255, 230 / 255, 20 / 255, 1), hg.Vec4(1, 0.658, 0., 1))
+mat_cube = create_material(
+	hg.Vec4(1, 230 / 255, 20 / 255, 1), hg.Vec4(1, 0.658, 0.0, 1)
+)
 hg.CreateObject(scene, hg.TransformationMat4(hg.Vec3(0, 0.5, 0), hg.Vec3(0, hg.Deg(70), 0)), cube_ref, [mat_cube])
 
-mat_ground = create_material(hg.Vec4(255 / 255, 120 / 255, 147 / 255, 1), hg.Vec4(1, 1, 0.1, 1))
+mat_ground = create_material(
+	hg.Vec4(1, 120 / 255, 147 / 255, 1), hg.Vec4(1, 1, 0.1, 1)
+)
 hg.CreateObject(scene, hg.TranslationMat4(hg.Vec3(0, 0, 0)), ground_ref, [mat_ground])
 
 # Setup 2D rendering to display eyes textures

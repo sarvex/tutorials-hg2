@@ -24,10 +24,9 @@ starfield_size = 10
 max_stars = 1000
 vtx = hg.Vertices(vtx_layout, max_stars * 2)
 
-stars = []
-for i in range(max_stars):
-	stars.append(hg.RandomVec3(-starfield_size, starfield_size))
-
+stars = [
+	hg.RandomVec3(-starfield_size, starfield_size) for _ in range(max_stars)
+]
 # main loop
 while not hg.ReadKeyboard().Key(hg.K_Escape) and hg.IsWindowOpen(window):
 	hg.SetViewClear(0, hg.CF_Color | hg.CF_Depth, hg.Color.Black, 1, 0)
